@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚系银河数字科技</title>
+    <link rel="icon" href="D://web//png//1.png" type="jpg/png">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 300;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #1a1a1a;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #0078e7;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 500;
+            color: #0078e7;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 40px;
+        }
+
+        .nav-menu a {
+            font-size: 16px;
+            color: #333;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:hover {
+            color: #0078e7;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #0078e7;
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* 英雄区域 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 60, 136, 0.85), rgba(0, 40, 85, 0.9)), url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: #0078e7;
+            color: white;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056a6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 关于我们 */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 17px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* 使命愿景 */
+        .mission {
+            background-color: #f5f8ff;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .mission-card {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-icon {
+            font-size: 50px;
+            margin-bottom: 25px;
+            color: #0078e7;
+        }
+
+        .mission-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        /* 发展历程 */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #e0e0e0;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-end;
+            padding-right: calc(50% + 40px);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: calc(50% + 40px);
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            background-color: #0078e7;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: calc(50% - 40px);
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            left: calc(50% - 40px);
+        }
+
+        .timeline-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 400px;
+        }
+
+        .timeline-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        /* 业务板块 */
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .business-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .business-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .business-img {
+            height: 190px;
+            overflow: hidden;
+        }
+
+        .business-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .business-card:hover .business-img img {
+            transform: scale(1.05);
+        }
+
+        .business-info {
+            padding: 25px;
+        }
+
+        .business-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #0078e7;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 20px;">
+    <div class="container nav-container">
+        <div class="logo" style="display: flex; align-items: center;">
+            <img src="D://web//png//1.png" alt="该图片无法显示" width="35" height="35">&nbsp;
+            <span class="logo-text" style="font-size: 29px;"><b>亚系银河数字科技</b></span>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#about"><b>关于亚系银河</b></a></li>
+            <li><a href="#mission"><b>使命愿景</b></a></li>
+            <li><a href="#history"><b>发展历程</b></a></li>
+            <li><a href="#business"><b>业务板块</b></a></li>
+            <li><a href="#contact"><b>联系我们</b></a></li>
+        </ul>
+
+        <div class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- 英雄区域 -->
+<section class="hero">
+    <div class="container hero-content">
+        <h1><b>公司简介</b></h1>
+        <p>北京亚系银河数字科技有限公司是一家专注于人工智能与企业服务深度融合的科技创新型企业。公司致力于通过AI技术赋能企业客户获取、客户运营与品牌传播，打造“智能获客—智能触达—智能服务—智能转化”全链路AI解决方案。
+
+        </p>
+        <a href="#about" class="btn">了解更多</a>
+    </div>
+</section>
+
+<!-- 关于我们 -->
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title"><b>关于亚系银河</b></h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>核心产品体系
+                </h3>
+                <p><b>AI爆客系统(AI Lead Hunter)</b>
+                    <br>
+                    一款基于企业公开数据与多源信息融合的智能客户挖掘工具 。系统通过企业名称、联系人、法人电 话、注册信息等关键字段，自动
+                    关联并提取目标企业的法人信息、股东结 构、经营范围、联系方式、关 联企业等深度数据，实现精准客户画像与高
+                    效线索获取。
+                </p>
+
+                <p><b>AI聚合系统(AI Aggregation Outreach System)</b>
+                    <br>
+                    一款集“精准搜索 + 智能触达 +
+                    自动化沟通”于一体的AI客户触达平台。用户可在系统内设定目标客户画像（如行业、规模、地域、关键词等），系统自动匹配潜在客户，并通过企业微信、短信、邮件等多渠道进行智能私域触达。
+                </p>
+
+                <p><b>AI智能体(AI Agent for Enterprise WeChat)</b>
+                    <br>
+                    是部署在企业微信、个人微信等私域场景中的“数字员工”，可7×24小时在线响应客户咨询，自动输出企业文化、产品信息、服务流程，并完成初步沟通、预约、答疑等任务。
+
+                </p>
+                <p><b>GEM搜索系统(Global Enterprise Mapping System)</b>
+                    <br>
+                    是一款面向全球市场的智能企业信息搜索引擎，整合工商、税务、司法、招投标、知识产权、新闻舆情等多源数据，提供企业全景视图与风险预警服务。
+                </p>
+
+                <a href="#contact" class="btn" style="margin-top: 20px;">联系我们</a>
+            </div>
+            <div class="about-image">
+                <img src="D://web//png//3.jpg" alt="该图片无法显示">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 使命愿景 -->
+<section id="mission" class="section mission">
+    <div class="container">
+        <h2 class="section-title"><b>使命与愿景</b></h2>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <div class="mission-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3><b>我们的使命</b></h3>
+                <p>我们致力于：以内容+数据+运营三维一体的服务模式，帮助品牌构建数字化竞争力，实
+                    现从流量获取到用户沉淀的全周期价值转化</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3><b>我们的愿景</b></h3>
+                <p>重塑数智时代新商业模型，构建产业个性化定制的AI生态服务平台。</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3><b>核心价值观</b></h3>
+                <p>以技术创新为核心驱动力，聚焦企业数智营销转型需求，打造了覆盖客户获取、营
+                    销互动、服务体验、内容生产等全链路的AI产品集成系统矩阵。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 发展历程 -->
+<section id="history" class="section">
+    <div class="container">
+        <h2 class="section-title"><b>发展历程</b></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year"><b>01</b></div>
+                <div class="timeline-content">
+                    <h3><b>2020-2022</b></h3>
+                    <p><b>互联网社交电商产业(杭州)</b></p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year"><b>02</b></div>
+                <div class="timeline-content">
+                    <h3><b>2022-2025</b></h3>
+                    <p><b>全域新媒体产业运营(杭州)</b></p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year"><b>03</b></div>
+                <div class="timeline-content">
+                    <h3><b>2025-至今</b></h3>
+                    <p><b>AI数智化全域营销，企业私有化大模型定制开发(北京)</b></p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year"><b>04</b></div>
+                <div class="timeline-content">
+                    <h3>2026</h3>
+                    <p><b>AI数智化营销一站式服务平台(北京)</b><p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year"><b>05</b></div>
+                <div class="timeline-content">
+                    <h3><b>未来</b></h3>
+                    <p><b>努力成为2027年国家在“实现AI智能应用全面覆盖率超70%”战略的助推器之一</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 业务板块 -->
+<section id="business" class="section mission">
+    <div class="container">
+        <h2 class="section-title"><b>核心业务</b></h2>
+        <div class="business-grid">
+            <div class="business-card">
+                <div class="business-img">
+                    <img src="D://web//png//3.png" alt="该图片无法显示">
+                </div>
+                <div class="business-info">
+                    <h3><b>AI智能体</b></h3>
+                    <p>部署在企业微信生态中的智能交互系统，通过AI技术赋能企业员工的微信沟通，实现24小时不间断与客户的智能互动，输出企业文化，回答专业问题，提升客户体验与品牌价值。
+
+                    </p>
+                </div>
+            </div>
+            <div class="business-card">
+                <div class="business-img">
+                    <img src="D://web//png//4.png" alt="该图片无法显示">
+                </div>
+                <div class="business-info">
+                    <h3><b>AI聚合系统</b></h3>
+                    <p>依赖人工筛选，效率低 AI自动筛选，精准度高
+                        触达渠道单一，覆盖面窄 覆盖多平台，触达渠道广
+                        无法实现个性化触达 基于客户画像的个性化内容
+                        效果难以追踪 实时数据监控，效果可量化
+                        人力投入大，成本高 自动化运行，成本效益高</p>
+                </div>
+            </div>
+            <div class="business-card">
+                <div class="business-img">
+                    <img src="D://web//png//5.png" alt="该图片无法显示">
+                </div>
+                <div class="business-info">
+                    <h3><b>AI爆客系统</b></h3>
+                    <p>基于企业级数据库与AI智能分析技术构建的精准客户挖掘平台，通过整合工商注册、法人信息、企业关
+                        联网络等多维数据，实现对目标企业的深度洞察与精准触达，为销售团队提供高质量客户线索。</p>
+                </div>
+            </div>
+            <div class="business-card">
+                <div class="business-img">
+                    <img src="D://web//png//6.png" alt="该图片无法显示">
+                </div>
+                <div class="business-info">
+                    <h3><b>GEO搜索系统</b></h3>
+                    <p>提供深度分析与洞察，信息精炼、结构化，理解用户查询意图，针对企业需求定制分析
+                    ，提供持续的情报追踪。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><b>亚系银河</b></h3>
+                <p>专注于为企业品牌提供全域电商运营解决方案
+                    <br>
+                    平台策略规划
+                    <br>
+                    内容生态搭建
+                    <br>
+                    内容生态搭建
+                    <br>
+                    用户精细化运营
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3><b>回顾链接</b></h3>
+                <ul class="footer-links">
+                    <li><a href="#about">关于亚系银河</a></li>
+                    <li><a href="#mission">使命愿景</a></li>
+                    <li><a href="#history">发展历程</a></li>
+                    <li><a href="#business">业务板块</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><b>联系我们</b></h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt contact-icon"></i>北京市通州区新广大5A写字楼2501</p>
+                    <p><i class="fas fa-phone contact-icon"></i> +86 1xxxxxxxxxxxx</p>
+                    <p><i class="fas fa-envelope contact-icon"></i> xxxxxx.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 - 2025 亚系银河 版权所有 <span style="margin: 0 10px;">|</span> xICPxxxxxxxx号</p>
+            <p style="margin-top: 10px;">xxxxxxxx</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 移动端菜单切换
+    document.getElementById('mobileToggle').addEventListener('click', function () {
+        document.querySelector('.nav-menu').classList.toggle('active');
+        this.querySelector('i').classList.toggle('fa-bars');
+        this.querySelector('i').classList.toggle('fa-times');
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // 关闭移动端菜单
+            document.querySelector('.nav-menu').classList.remove('active');
+            document.getElementById('mobileToggle').querySelector('i').classList.remove('fa-times');
+            document.getElementById('mobileToggle').querySelector('i').classList.add('fa-bars');
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 滚动时导航栏效果
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 100) {
+            navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+        }
+    });
+</script>
+
+</body>
+</html>
